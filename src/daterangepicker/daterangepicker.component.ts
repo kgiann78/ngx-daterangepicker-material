@@ -133,6 +133,7 @@ export class DaterangepickerComponent implements OnInit {
     @Output('choosedDate') choosedDate: EventEmitter<Object>;
     @Output('rangeClicked') rangeClicked: EventEmitter<Object>;
     @Output('datesUpdated') datesUpdated: EventEmitter<Object>;
+    @Output('datesIncludeInvalidDates') datesIncludeInvalidDates: EventEmitter<Object>;
     @ViewChild('pickerContainer') pickerContainer: ElementRef;
 
     constructor(
@@ -143,6 +144,7 @@ export class DaterangepickerComponent implements OnInit {
         this.choosedDate = new EventEmitter();
         this.rangeClicked = new EventEmitter();
         this.datesUpdated = new EventEmitter();
+        this.datesIncludeInvalidDates = new EventEmitter();
     }
 
     ngOnInit() {
@@ -676,6 +678,7 @@ export class DaterangepickerComponent implements OnInit {
             const d = this.startDate.clone();
             while (d.isBefore(this.endDate)) {
                 if (this.isInvalidDate(d)) {
+                    this.datesIncludeInvalidDates.emit({hasInvalidDate: true, startDate: this.startDate, endDate:  this.endDate});
                     this.endDate = d.subtract(1, 'days');
                     this.calculateChosenLabel();
                     break;
@@ -1016,6 +1019,7 @@ export class DaterangepickerComponent implements OnInit {
         this.endDate = moment().endOf('day');
         this.choosedDate.emit({chosenLabel: '', startDate: null, endDate: null});
         this.datesUpdated.emit({startDate: null, endDate: null});
+        this.datesIncludeInvalidDates.emit({ hasInvalidDate: false, startDate: null, endDate: null});
         this.hide();
     }
 

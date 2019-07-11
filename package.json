@@ -23,7 +23,7 @@
   "typings": "dist/index.d.ts",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 4300",
     "demo:build": "ng build --prod",
     "test": "./node_modules/.bin/ng test --watch=false",
     "lint": "ng lint",

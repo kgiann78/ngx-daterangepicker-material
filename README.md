@@ -76,7 +76,7 @@ and [browse our demo code here](./demo/src/app).
 
 ## Inline usage
 
-You can use the component directly in your templates, which will set its `inline` mode to **true**, in which case the calendar won't hide after date/range selection. You can then use the events: `rangeClicked` or `datesUpdated` or `choosedDate` to get its selection state.
+You can use the component directly in your templates, which will set its `inline` mode to **true**, in which case the calendar won't hide after date/range selection. You can then use the events: `rangeClicked` or `datesUpdated` or `datesIncludeInvalidDates` or `choosedDate` to get its selection state.
 
 ```html
 <ngx-daterangepicker-material (choosedDate)="choosedDate($event)">
@@ -205,6 +205,10 @@ You can use theses options:
 ### \(datesUpdated)
 
  >Fires when the date model is updated, like applying (if you have activated the apply button), or when selecting a range or date without the apply button, and sends an object containing start and end dates, eg: `{startDate: Moment, endDate: Moment}`
+
+### \(datesIncludeInvalidDates)
+
+ >Fires when the date range selected has invalid dates into it. Normally, after applying OK the end date will be the first available date before the invalid one. But the user should be aware of this difference even after the apply.
 
 ### Global locale
 

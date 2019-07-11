@@ -51,4 +51,8 @@ export class CustomRangesComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  datesIncludeInvalidDates(range) {
+    console.log('[datesIncludeInvalidDates] range is : ', range);
+  }
 }
